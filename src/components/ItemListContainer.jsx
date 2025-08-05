@@ -9,8 +9,7 @@ const ItemListContainer = ({ greeting, onAddToCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Simulación de fetch
-    const fakeProducts = [
+    const Productos = [
       {
         id: 1,
         title: 'Top Negro (Microfibra)',
@@ -38,7 +37,7 @@ const ItemListContainer = ({ greeting, onAddToCart }) => {
     ];
 
     setTimeout(() => {
-      setProducts(fakeProducts);
+      setProducts(Productos);
     }, 500);
   }, []);
 
