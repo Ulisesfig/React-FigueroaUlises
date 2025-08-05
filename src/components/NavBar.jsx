@@ -1,9 +1,8 @@
-
 import React from 'react';
 import CartWidget from './CartWidget';
 import logo from '../assets/logo.jpg';
 
-const NavBar = ({ cart }) => {
+const NavBar = ({ cart, onRemoveFromCart }) => {
   return (
     <nav style={{
       display: 'flex',
@@ -14,24 +13,11 @@ const NavBar = ({ cart }) => {
       color: 'white'
     }}>
       <div>
-        <img src={logo} alt="Logo Micalea" style={{ height: '40px' }} />
+        <img src={logo} alt="Logo Micaela" style={{ height: '40px' }} />
       </div>
-
-      <ul style={{
-        listStyle: 'none',
-        display: 'flex',
-        gap: '1.5rem',
-        margin: 0,
-        padding: 0
-      }}>
-        <li><a href="#" style={{ color: 'white', textDecoration: 'none' }}>Inicio</a></li>
-        <li><a href="#" style={{ color: 'white', textDecoration: 'none' }}>Productos</a></li>
-        <li><a href="#" style={{ color: 'white', textDecoration: 'none' }}>Contacto</a></li>
-      </ul>
-      <CartWidget cart={cart} />
+      <CartWidget cart={cart} onRemoveFromCart={onRemoveFromCart} />
     </nav>
   );
 };
 
 export default NavBar;
-

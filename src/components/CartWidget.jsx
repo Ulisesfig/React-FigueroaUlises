@@ -1,13 +1,9 @@
-
 import React, { useState } from 'react';
 
-const CartWidget = ({ cart }) => {
+const CartWidget = ({ cart, onRemoveFromCart }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Total de productos en el carrito
   const totalQuantity = Object.values(cart).reduce((acc, item) => acc + item.quantity, 0);
-
-  // Total precio
   const totalPrice = Object.values(cart).reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
@@ -47,10 +43,32 @@ const CartWidget = ({ cart }) => {
           ) : (
             <ul style={{ listStyle: 'none', paddingLeft: 0, maxHeight: '200px', overflowY: 'auto' }}>
               {Object.values(cart).map((item) => (
-                <li key={item.id} style={{ marginBottom: '0.5rem', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem' }}>
-                  <strong>{item.title}</strong> <br />
-                  Cantidad: {item.quantity} <br />
-                  Precio: ${item.price * item.quantity}
+                <li key={item.id} style={{
+                  marginBottom: '0.5rem',
+                  borderBottom: '1px solid #ddd',
+                  paddingBottom: '0.5rem',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <div>
+                    <strong>{item.title}</strong><br />
+                    Cantidad: {item.quantity}<br />
+                    Precio: ${item.price * item.quantity}
+                  </div>
+                  <button
+                    onClick={() => onRemoveFromCart(item.id)}
+                    style={{
+                      backgroundColor: 'red',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      padding: '0.2rem 0.5rem'
+                    }}
+                  >
+                    X
+                  </button>
                 </li>
               ))}
             </ul>

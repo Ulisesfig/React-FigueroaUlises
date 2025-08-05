@@ -1,29 +1,24 @@
 import React from 'react';
 
-const Item = ({ title, price, id, onAddToCart }) => {
-  const handleClick = (e) => {
-    if (e.target.tagName === 'BUTTON') {
-      const product = { id, title, price };
-      onAddToCart(product);
-    }
-  };
-
-  return (
-    <div
-      onClick={handleClick}
-      style={{
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '1rem',
-        backgroundColor: '#fff',
-        textAlign: 'center'
-      }}
-    >
-      <h4>{title}</h4>
-      <p>Precio: ${price}</p>
-      <button>Agregar al carrito</button>
+const Item = ({ id, title, price, image, onAddToCart }) => (
+  <div className="card h-100 shadow-sm">
+    <img
+      src={image}
+      className="card-img-top"
+      alt={title}
+      style={{ height: '70%', objectFit: 'cover' }}
+    />
+    <div className="card-body d-flex flex-column">
+      <h5 className="card-title">{title}</h5>
+      <p className="card-text">${price}</p>
+      <button
+        className="btn btn-primary mt-auto"
+        onClick={() => onAddToCart({ id, title, price, image })}
+      >
+        Agregar al carrito
+      </button>
     </div>
-  );
-};
+  </div>
+);
 
 export default Item;

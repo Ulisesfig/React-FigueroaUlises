@@ -15,7 +15,6 @@ function App() {
   const handleAddToCart = (product) => {
     setCart(prevCart => {
       const newCart = { ...prevCart };
-
       if (newCart[product.id]) {
         newCart[product.id].quantity += 1;
       } else {
@@ -25,10 +24,18 @@ function App() {
     });
   };
 
+  const handleRemoveFromCart = (productId) => {
+    setCart(prevCart => {
+      const newCart = { ...prevCart };
+      delete newCart[productId];
+      return newCart;
+    });
+  };
+
   return (
     <>
-      <NavBar cart={cart} />
-      <ItemListContainer greeting="Bienvenido a Micaela Store" onAddToCart={handleAddToCart} />
+      <NavBar cart={cart} onRemoveFromCart={handleRemoveFromCart} />
+      <ItemListContainer greeting="¡Bienvenido a Micaela Store!" onAddToCart={handleAddToCart} />
     </>
   );
 }
