@@ -1,0 +1,227 @@
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #353a40;
+  padding: 15px 30px;
+  border-bottom: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.navbar-logo a,
+.navbar-links a {
+  color: #fff !important;
+  font-weight: bold;
+  text-decoration: none;
+}
+.navbar-links a {
+  margin-right: 20px;
+  font-size: 1em;
+}
+.navbar-links a:last-child {
+  margin-right: 0;
+}
+.navbar-cart {
+  position: relative;
+  margin-left: 20px;
+}
+
+/* LOGO */
+.logo-img {
+  height: 70px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* FILTRO */
+.filtro-barra {
+  margin: 32px auto 24px auto;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.filtro-barra label {
+  font-size: 1em;
+  color: #333;
+}
+.filtro-barra input[type="range"] {
+  width: 180px;
+  margin: 0 10px;
+}
+.btn-limpiar {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 16px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-limpiar:hover {
+  background: #c0392b;
+}
+
+/* LISTADO DE PRODUCTOS */
+.itemlist-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 30px 0;
+}
+.item-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.item-list-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+.item-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 240px;
+  max-width: 260px;
+}
+.item-img {
+  width: 240px;
+  height: 260px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.item-detail-link {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+.item-detail-link:hover {
+  background: #0056b3;
+}
+
+/* DETALLE DE PRODUCTO */
+.item-detail {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-align: center;
+}
+.item-detail-img {
+  width: 420px;
+  height: 420px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.add-to-cart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-to-cart-btn:hover {
+  background: #218838;
+}
+
+/* CARRITO */
+.carrito-section {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-align: center;
+}
+.carrito-lista {
+  list-style: none;
+  padding: 0;
+}
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.btn-quitar {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-quitar:hover {
+  background: #c0392b;
+}
+
+/* 404 */
+.not-found {
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* TITULOS */
+h2, h3 {
+  color: #444;
+  text-align: center;
+}
+
+/* FONDO GENERAL */
+body {
+  background: #f4f6f8;
+  padding-bottom: 40px;
+}
+.alert-exito {
+  background: #28a745;
+  color: #fff;
+  padding: 14px 0;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 18px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}

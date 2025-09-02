@@ -1,23 +1,31 @@
-import React from 'react';
-import CartWidget from './CartWidget';
-import logo from '../assets/logo.jpg';
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 
-const NavBar = ({ cart, onRemoveFromCart }) => {
+const categorias = ["ropa", "accesorios", "calzado"];
+
+function NavBar({ cantidadCarrito = 0 }) {
   return (
-    <nav style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '1rem 2rem',
-      backgroundColor: '#343a40',
-      color: 'white'
-    }}>
-      <div>
-        <img src={logo} alt="Logo Micaela" style={{ height: '40px' }} />
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <Link to="/">
+          <img src={logo} alt="Micaela Store" className="logo-img" />
+        </Link>
       </div>
-      <CartWidget cart={cart} onRemoveFromCart={onRemoveFromCart} />
+      <div className="navbar-links categoria-links">
+        {categorias.map(cat => (
+          <Link key={cat} to={`/categoria/${cat}`}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</Link>
+        ))}
+      </div>
+      <div className="navbar-cart ms-3">
+        <Link to="/carrito" className="position-relative">
+          <i className="bi bi-cart" style={{ fontSize: "2rem", color: "#fff" }}></i>
+          <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+            {cantidadCarrito}
+          </span>
+        </Link>
+      </div>
     </nav>
   );
-};
+}
 
 export default NavBar;

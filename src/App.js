@@ -1,42 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import ItemListContainer from "./containers/ItemListContainer";
+import ItemDetailContainer from "./containers/ItemDetailContainer";
+import Carrito from "./components/Carrito";
+import NotFound from "./components/NotFound";
+import './App.css';
+
 
 function App() {
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : {};
-  });
+  const [carrito, setCarrito] = useState([]);
+  const [mensaje, setMensaje] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
-  const handleAddToCart = (product) => {
-    setCart(prevCart => {
-      const newCart = { ...prevCart };
-      if (newCart[product.id]) {
-        newCart[product.id].quantity += 1;
+  // Agregar producto y redirigir
+  const agregarAlCarrito = (producto, navigate) => {
+    setCarrito(prev => {
+      const existe = prev.find(p => p.id === producto.id);
+      if (existe) {
+        return prev.map(p =>
+          p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
+        );
       } else {
-        newCart[product.id] = { ...product, quantity: 1 };
+        return [...prev, { ...producto, cantidad: 1 }];
       }
-      return newCart;
     });
+    setMensaje("Tu producto se ha agregado con éxito");
+    navigate("/");
+    setTimeout(() => setMensaje(""), 2500);
   };
 
-  const handleRemoveFromCart = (productId) => {
-    setCart(prevCart => {
-      const newCart = { ...prevCart };
-      delete newCart[productId];
-      return newCart;
-    });
+  // Quitar producto
+  const quitarDelCarrito = (id) => {
+    setCarrito(prev => prev.filter(p => p.id !== id));
   };
+
+  // Cantidad total
+  const cantidadCarrito = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
 
   return (
-    <>
-      <NavBar cart={cart} onRemoveFromCart={handleRemoveFromCart} />
-      <ItemListContainer greeting="¡Bienvenido a Micaela Store!" onAddToCart={handleAddToCart} />
-    </>
+    <BrowserRouter>
+      <NavBar cantidadCarrito={cantidadCarrito} />
+      <Routes>
+        <Route
+          path="/"
+          element={<ItemListContainer mensaje={mensaje} />}
+        />
+        <Route
+          path="/categoria/:categoriaId"
+          element={<ItemListContainer mensaje={mensaje} />}
+        />
+        <Route
+          path="/item/:itemId"
+          element={<ItemDetailContainer agregarAlCarrito={agregarAlCarrito} />}
+        />
+        <Route
+          path="/carrito"
+          element={<Carrito carrito={carrito} quitarDelCarrito={quitarDelCarrito} />}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
